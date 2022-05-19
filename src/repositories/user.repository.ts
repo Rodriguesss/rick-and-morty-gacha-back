@@ -9,7 +9,12 @@ async function findEmail(email: string) {
   return prisma.users.findUnique({ where: { email } });
 }
 
+async function findNickname(nickname: string) {
+  return prisma.users.findUnique({ where: { nickname } });
+}
+
 export default {
   insertOne,
   findEmail,
+  findNickname,
 };

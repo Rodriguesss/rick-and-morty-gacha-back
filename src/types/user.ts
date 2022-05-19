@@ -3,3 +3,5 @@ export type UserRequestBody = {
   nickname: string;
   password: string;
 };
+
+export type UserLoginBody = Omit<UserRequestBody, "email">;

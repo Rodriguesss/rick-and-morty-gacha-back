@@ -1,9 +1,15 @@
 import joi from "joi";
 
-const joiUserObject = joi.object({
-  email: joi.string().email().required(),
+const joiLogin = {
   nickname: joi.string().min(3).max(12).required(),
   password: joi.string().min(3).max(15).required(),
+};
+
+const joiUserObject = joi.object({
+  ...joiLogin,
+  email: joi.string().email().required(),
 });
 
-export { joiUserObject };
+const joiLoginObject = joi.object(joiLogin);
+
+export { joiUserObject, joiLoginObject };
