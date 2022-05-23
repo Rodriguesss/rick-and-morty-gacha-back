@@ -6,7 +6,7 @@ async function find(userId: number) {
 }
 
 async function linkIcon(userId: number, profileIconId: number) {
-  await profileRepository.linkIcon(userId, profileIconId);
+  return await profileRepository.linkIcon(userId, profileIconId);
 }
 
 async function create(userId: number) {

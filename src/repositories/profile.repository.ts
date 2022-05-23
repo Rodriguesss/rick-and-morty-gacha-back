@@ -9,7 +9,7 @@ async function find(usersId: number) {
 }
 
 async function linkIcon(usersId: number, profileIconId: number) {
-  await prisma.profiles.update({
+  return await prisma.profiles.update({
     where: {
       usersId,
     },

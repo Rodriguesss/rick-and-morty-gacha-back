@@ -21,9 +21,9 @@ async function linkIcon(req: Request, res: Response) {
   const { profileIconId } = req.body;
 
   await profileService.checkProfileContainsIcon(userId);
-  await profileService.linkIcon(userId, profileIconId);
+  const profile = await profileService.linkIcon(userId, profileIconId);
 
-  res.send("OK");
+  res.send(profile);
 }
 
 const profileController = {
