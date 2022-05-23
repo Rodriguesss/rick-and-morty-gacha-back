@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/server.ts",
-    "seed": "npx prisma db seed"
+    "seed": "npx prisma db seed",
+    "build": "tsc",
+    "start": "node dist/src/server.js"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
