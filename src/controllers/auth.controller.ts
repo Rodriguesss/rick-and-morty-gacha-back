@@ -9,7 +9,7 @@ async function signIn(req: Request, res: Response) {
 
   const token = await authService.signIn(user, password);
 
-  res.status(200).send({ token });
+  res.status(200).send({ token, nickname });
 }
 
 const authController = {

@@ -6,6 +6,7 @@ const ERROR_ENUM: { [error_type: string]: number } = {
   bad_request: 400,
   unprocessable_entity: 422,
   not_authorized: 401,
+  conflict: 409,
 };
 
 export function errorHandler(

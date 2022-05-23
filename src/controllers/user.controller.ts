@@ -3,9 +3,9 @@ import userService from "../services/user.service.js";
 import { UserRequestBody } from "../types/user.js";
 
 async function create(req: Request, res: Response) {
-  const { email }: UserRequestBody = req.body;
+  const { email, nickname }: UserRequestBody = req.body;
 
-  await userService.checkEmailAlreadyRegistered(email);
+  await userService.checkEmailAndNicknameAlreadyRegistered(email, nickname);
   await userService.insertNewUser(req.body);
 
   res.sendStatus(201);

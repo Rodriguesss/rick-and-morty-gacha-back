@@ -18,6 +18,7 @@ model Users {
 
   sessions Sessions[]
 
+  Profile Profiles?
   @@map("users")
 }
 
@@ -28,4 +29,65 @@ model Sessions {
   userId Int
 
   @@map("sessions")
+}
+
+model Profiles {
+  id Int @id @default(autoincrement())
+
+  portalWeapons Int? @default(3)
+
+  user    Users @relation(fields: [usersId], references: [id])
+  usersId Int   @unique
+
+  profileIcon   ProfileIcon? @relation(fields: [profileIconId], references: [id])
+  profileIconId Int?
+
+  ProfileCharacters ProfileCharacters[]
+
+  @@map("profiles")
+}
+
+model ProfileIcon {
+  id Int @id @default(autoincrement())
+
+  name    String
+  cursor1 String
+  cursor2 String
+
+  Profiles Profiles[]
+
+  @@map("profileIcons")
+}
+
+model Banners {
+  id Int @id @default(autoincrement())
+
+  title       String
+  description String
+  path        String
+  theme       String
+  filter      String
+
+  @@map("banners")
+}
+
+model Characters {
+  id Int @id @default(autoincrement())
+
+  apiId             Int
+  ProfileCharacters ProfileCharacters[]
+
+  @@map("characters")
+}
+
+model ProfileCharacters {
+  id Int @id @default(autoincrement())
+
+  profile   Profiles @relation(fields: [profileId], references: [id])
+  profileId Int
+
+  characters  Characters @relation(fields: [characterId], references: [id])
+  characterId Int
+
+  @@map("profileCharacters")
 }

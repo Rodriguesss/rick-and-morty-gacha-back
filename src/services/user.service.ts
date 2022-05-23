@@ -9,13 +9,23 @@ async function insertNewUser(user: UserRequestBody) {
   await userRepository.insertOne({ ...user, password: passwordHash });
 }
 
-async function checkEmailAlreadyRegistered(email: string) {
+async function checkEmailAndNicknameAlreadyRegistered(
+  email: string,
+  nickname: string
+) {
   const emailExists = await userRepository.findEmail(email);
-
   if (emailExists) throw badRequest("Email já cadastrado.");
+
+  const nicknameExists = await userRepository.findNickname(nickname);
+  if (nicknameExists) throw badRequest("Nickname já cadastrado.");
+}
+
+async function findById(userId: number) {
+  return await userRepository.findById(userId);
 }
 
 export default {
   insertNewUser,
-  checkEmailAlreadyRegistered,
+  checkEmailAndNicknameAlreadyRegistered,
+  findById,
 };

@@ -8,4 +8,12 @@ function badRequest(message: string): ErrorFormat {
   return { type: "bad_request", message };
 }
 
-export { unprocessEntity, badRequest };
+function unauthorizedError(message: string): ErrorFormat {
+  return { type: "unauthorized", message };
+}
+
+function conflict(message: string): ErrorFormat {
+  return { type: "conflict", message };
+}
+
+export { unprocessEntity, badRequest, unauthorizedError, conflict };
